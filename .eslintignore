@@ -1,0 +1,7 @@
+coverage
+node_modules
+dist
+components.d.ts
+commitlint.config.js
+www
+loader
