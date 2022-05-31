@@ -6,6 +6,32 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface DocsExmaple {
+        /**
+          * Centers examples
+         */
+        "centered": boolean;
+        /**
+          * Web Component markup encoded as URI component
+         */
+        "code": string;
+        /**
+          * CSS component markup encoded as URI component.
+         */
+        "codeCssComponent": string;
+        /**
+          * Opens code view on initial load.
+         */
+        "opened": boolean;
+        /**
+          * Custom show-container styles.
+         */
+        "styles": string;
+    }
+    interface DocsLayout {
+    }
+    interface DocsMain {
+    }
     interface SageInput {
         /**
           * The first name
@@ -22,6 +48,24 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLDocsExmapleElement extends Components.DocsExmaple, HTMLStencilElement {
+    }
+    var HTMLDocsExmapleElement: {
+        prototype: HTMLDocsExmapleElement;
+        new (): HTMLDocsExmapleElement;
+    };
+    interface HTMLDocsLayoutElement extends Components.DocsLayout, HTMLStencilElement {
+    }
+    var HTMLDocsLayoutElement: {
+        prototype: HTMLDocsLayoutElement;
+        new (): HTMLDocsLayoutElement;
+    };
+    interface HTMLDocsMainElement extends Components.DocsMain, HTMLStencilElement {
+    }
+    var HTMLDocsMainElement: {
+        prototype: HTMLDocsMainElement;
+        new (): HTMLDocsMainElement;
+    };
     interface HTMLSageInputElement extends Components.SageInput, HTMLStencilElement {
     }
     var HTMLSageInputElement: {
@@ -29,10 +73,39 @@ declare global {
         new (): HTMLSageInputElement;
     };
     interface HTMLElementTagNameMap {
+        "docs-exmaple": HTMLDocsExmapleElement;
+        "docs-layout": HTMLDocsLayoutElement;
+        "docs-main": HTMLDocsMainElement;
         "sage-input": HTMLSageInputElement;
     }
 }
 declare namespace LocalJSX {
+    interface DocsExmaple {
+        /**
+          * Centers examples
+         */
+        "centered"?: boolean;
+        /**
+          * Web Component markup encoded as URI component
+         */
+        "code": string;
+        /**
+          * CSS component markup encoded as URI component.
+         */
+        "codeCssComponent"?: string;
+        /**
+          * Opens code view on initial load.
+         */
+        "opened"?: boolean;
+        /**
+          * Custom show-container styles.
+         */
+        "styles"?: string;
+    }
+    interface DocsLayout {
+    }
+    interface DocsMain {
+    }
     interface SageInput {
         /**
           * The first name
@@ -48,6 +121,9 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "docs-exmaple": DocsExmaple;
+        "docs-layout": DocsLayout;
+        "docs-main": DocsMain;
         "sage-input": SageInput;
     }
 }
@@ -55,6 +131,9 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "docs-exmaple": LocalJSX.DocsExmaple & JSXBase.HTMLAttributes<HTMLDocsExmapleElement>;
+            "docs-layout": LocalJSX.DocsLayout & JSXBase.HTMLAttributes<HTMLDocsLayoutElement>;
+            "docs-main": LocalJSX.DocsMain & JSXBase.HTMLAttributes<HTMLDocsMainElement>;
             "sage-input": LocalJSX.SageInput & JSXBase.HTMLAttributes<HTMLSageInputElement>;
         }
     }

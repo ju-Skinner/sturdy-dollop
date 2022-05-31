@@ -26,14 +26,15 @@ export const config: Config = {
     },
     {
       type: 'docs-readme',
+      footer: ' ',
     },
     {
       type: 'docs-vscode',
       file: 'tmp/web-components.html-data.json',
     },
     {
-      type: 'www',
-      serviceWorker: null, // disable service workers
+      type: 'docs-json',
+      file: 'dist/web-components.json',
     },
   ],
   plugins: [postcss(postcssConfig)],
