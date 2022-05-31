@@ -1,0 +1,47 @@
+---
+title: Introduction
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ env.base }}/{{ buildstamp }}docs.css" />
+    <link rel="stylesheet" href="{{ env.base }}/{{ buildstamp }}sage-future.global.css">
+    <script type="module" src="{{ env.base }}/{{ buildstamp }}dist/build/sage-future.esm.js"></script>
+    <script nomodule src="{{ env.base }}/{{ buildstamp }}dist/build/sage-future.js"></script>
+  </head>
+  <docs-layout id="docs-layout">
+    <docs-nav>
+      {% set navPages = collections.all | eleventyNavigation %}
+      {% macro renderNavListItem(entry) %}
+        <li class="docs-nav__li{% if ((entry.url == '/') and ((page.url == '/') or ('introduction/' in page.url))) or ((entry.url != '/') and (entry.url in page.url)) %} docs-nav__li--active{% endif %}">
+          {% if entry.children.length %}
+            <details{% if ((entry.url == '/') and (('introduction/' in page.url) or ('/' == page.url))) or (((entry.url != '/') and (entry.url in page.url))) %} open{% endif %}>
+              <summary class="docs-nav__summary docs-nav__summary--{{ entry.title | lower | replace(" ", "-") }}">
+                <a href="{{ env.base }}{{ entry.url | url }}"><span aria-label="{{ entry.title }}">{{ entry.title }}</span><div class="docs-nav__arrow"></div></a>
+                <div class="docs-nav__summary-toggle"></div>
+              </summary>
+              <ul>
+                {% if ("/components" in entry.url) or ("/globals" in entry.url) %}
+                  {% for child in entry.children|sort(false, true, 'title') %}{{ renderNavListItem(child) }}{% endfor %}
+                {% else %}
+                  {% for child in entry.children %}{{ renderNavListItem(child) }}{% endfor %}
+                {% endif %}
+              </ul>
+            </details>
+          {% else %}
+            <a href="{{ env.base }}{{ entry.url | url }}">{{ entry.title }}</a>
+          {% endif %}
+        </li>
+      {% endmacro %}
+
+      <ul>
+        {% for entry in navPages %}{{ renderNavListItem(entry) }}{% endfor %}
+      </ul>
+    </docs-nav>
+    <docs-main>
+      {{ content | safe }}
+    </docs-main>
+  </docs-layout>
+</html>
