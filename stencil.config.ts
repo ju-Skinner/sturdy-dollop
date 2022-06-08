@@ -1,4 +1,5 @@
 import { Config } from '@stencil/core';
+import { reactOutputTarget } from '@stencil/react-output-target';
 import { postcss } from '@stencil/postcss';
 
 import postcssConfig from './postcss.config';
@@ -23,6 +24,7 @@ export const config: Config = {
     {
       type: 'dist-custom-elements',
       autoDefineCustomElements: true,
+      generateTypeDeclarations: true,
     },
     {
       type: 'docs-readme',
@@ -36,6 +38,11 @@ export const config: Config = {
       type: 'docs-json',
       file: 'dist/web-components.json',
     },
+    reactOutputTarget({
+      componentCorePackage: '..',
+      includeDefineCustomElements: true,
+      proxiesFile: './src/react.ts',
+    }),
   ],
   plugins: [postcss(postcssConfig)],
   srcDir: 'src/sage',

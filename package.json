@@ -1,6 +1,6 @@
 {
   "name": "sage-future",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Sage Design System",
   "author": "Design System Services, part of Shared Services at Kajabi",
   "main": "dist/index.cjs.js",
@@ -20,12 +20,13 @@
     "loader/"
   ],
   "scripts": {
-    "build": "run-s build.stencil.components build.styles",
+    "build": "run-s build.stencil.components build.stencil.react build.styles",
     "build.docs": "run-s build.docs.clean build.stencil.docs build.eleventy",
     "build.docs.clean": "shx rm -rf dist_docs",
     "build.eleventy": "dotenv -e .env -- yarn eleventy",
     "build.stencil.components": "stencil build && shx mv tmp/web-components.html-data.json dist/web-components.html-data.json && shx rm -r tmp",
     "build.stencil.docs": "stencil build --config=stencil.config.docs.ts",
+    "build.stencil.react": "tsc -p tsconfig.react.json && (shx rm src/react.ts & shx rm -r src/react-component-lib)",
     "build.styles": "run-p build.styles.sage.components build.styles.sage.globals",
     "build.styles.docs.sage.globals": "postcss src/sage/global/styles/global.css --config=postcss.config.docs.js -m -o dist_docs/sage-future.global.css",
     "build.styles.docs.docs": "postcss src/docs/global/styles/global.css --config=postcss.config.docs.js -m -o dist_docs/docs.css",
@@ -68,9 +69,12 @@
     "@commitlint/config-conventional": "^17.0.0",
     "@stencil/eslint-plugin": "^0.4.0",
     "@stencil/postcss": "^2.1.0",
+    "@stencil/react-output-target": "^0.3.1",
     "@types/jest": "^27.0.3",
     "@types/markdown-it": "^12.2.3",
     "@types/node": "10",
+    "@types/react": "^18.0.12",
+    "@types/react-dom": "^18.0.5",
     "@typescript-eslint/eslint-plugin": "^5.26.0",
     "@typescript-eslint/parser": "^5.26.0",
     "cheerio": "^1.0.0-rc.10",
@@ -122,5 +126,9 @@
       "eslint --fix"
     ],
     "*.css": "stylelint"
+  },
+  "peerDependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
   }
 }
