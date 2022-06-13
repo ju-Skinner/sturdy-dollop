@@ -1,0 +1,11 @@
+{
+  "global": {
+    "Sage": {
+      "300": {
+        "value": "#23856D",
+        "type": "color"
+      }
+    }
+  },
+  "$themes": []
+}
