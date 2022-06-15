@@ -9,12 +9,7 @@
     "Demo Color": {
       "value": "#00c200",
       "type": "color"
-    },
-    "Demo Color 2": {
-      "value": "#00c200",
-      "type": "color"
     }
-    
   },
   "$themes": []
 }
