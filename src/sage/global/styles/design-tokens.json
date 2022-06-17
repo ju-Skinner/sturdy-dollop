@@ -23,7 +23,7 @@
     },
     "Grey": {
       "100": {
-        "value": "#F9FAFA",
+        "value": "#22c21f",
         "type": "color",
         "description": "sage-color(grey, 100)"
       },
