@@ -2,7 +2,7 @@
   "global": {},
   "Sage": {
     "white": {
-      "value": "#ffffff",
+      "value": "#000",
       "type": "color"
     },
     "black": {
